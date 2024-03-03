@@ -2,6 +2,7 @@ package com.example.airline_api.services;
 
 import com.example.airline_api.models.Flight;
 import com.example.airline_api.models.Passenger;
+import com.example.airline_api.models.PassengerDTO;
 import com.example.airline_api.repositories.FlightRepository;
 import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,9 @@ public class FlightService {
 
 
 
-    public Flight addPassengerToFlight(long id, long passengerId) {
+    public Flight addPassengerToFlight(long id, PassengerDTO passengerDTO) {
         Optional<Flight> flightOptional = flightRepository.findById(id);
-        Optional<Passenger> passengerOptional = passengerRepository.findById(passengerId);
+        Optional<Passenger> passengerOptional = passengerRepository.findById(passengerDTO.getId());
         Flight flight;
         Passenger passenger;
         if(flightOptional.isPresent()){
